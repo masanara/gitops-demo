@@ -16,6 +16,7 @@ spec:
       containers:
       - name: nginx
         image: harbor.nsx.techlab.netone.co.jp/library/nginx-env:0.2
+        imagePullPolicy: Always
         env:
           - name: NODE_NAME
             valueFrom:
