@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: basic-nginx-deployment
+  namespace: basic-nginx
+spec:
+  selector:
+    matchLabels:
+      app: edge-app
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: edge-app
+    spec:
+      containers:
+      - name: nginx
+        image: harbor.nsx.techlab.netone.co.jp/library/nginx-env:0.1
+        env:
+          - name: HTML_CONTENT
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+        ports:
+        - containerPort: 80
